@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Defensive Coding
+    </title>
+</head>
+<script type="text/javascript">
+    function EscapeFunction(){
+        document.write(escape("This string does not need to escape"))
+        // the deprecated escape() method computes a new string that is now replaced by a hexadecimal escape sequence
+        // the escape function allowed you to essentially replace characters with their hexadecimal escape sequence.
+        // it was possible for an attacker to use the escape function as part of cross-site scripting. 
+        // Now there're certain characters that are used in certain attacks, 
+                // and one can program an intrusion detection system or an application firewall to seek these out and to block them.
+// From Javascript 1.5 - escape fx deprecated but still works
+        // **So to hide those, some attackers were using cross-site scripting and **
+            // **using the escape function to mask some of these sorts of characters in their attack.**
+
+        var res = "encodeURI(uri)"
+        // Alternative to escape dx - aka encodes Uniform Resource Identifier
+            // Same fx as escape fx
+    }
+</script>
+<body>
+
+</body>
+</html>
