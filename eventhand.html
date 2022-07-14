@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Event Handlers and Untrusted Data
+    </title>
+</head>
+<script type="text/javascript">
+    
+    // assign user defined function to intercept errors
+    window.onerror = myOnError
+    // create array to hold error messages
+    messageArray = new Array(0)
+    // create an array to hold url errors
+    urlArray = new Array(0)
+    // create array to hold line number of errors
+    lineNumberArray = new Array(0)
+    // error intercepting fx below
+    function myOnError(msg, url, lno){
+
+        // assigns msg of current error to the array element after the last element
+        messageArray[messageArray.length] = msg
+
+        // assign URL of current error to the array element following the last element
+        urlArray[urlArray.length] = url
+
+        // assign line number of current error to the array element following the last element
+        lineNumberArray[lineNumberArray.length] = lno
+
+        return true
+        // return true to intercept errors
+
+    }
+
+    function onClick(){
+
+        // validation goes here
+        var datatocheck;
+        datatocheck = document.getElementById("age")
+
+        try
+            {
+                if(datatocheck=="")
+                    throw "empty";
+                else if (isNan(datatocheck))
+                    throw "not a number"
+                else if (datatocheck < 10)
+                    throw "too low"
+                else if (datatocheck > 100)
+                    throw "too high"
+            }
+            catch(err)
+                {
+                    alert("Input is" + err)
+                }
+
+    }
+
+</script>
+<body>
+
+</body>
+</html>
