@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        CORS coding
+    </title>
+</head>
+<script type="text/javascript">
+    var invocation = new XMLHttpRequest();
+    var uri = "http://test.com/resources/public-date/";
+
+    function callOtherDomain() {
+        if(invocation){
+            invocation.open("GET", url, true);
+            invocation.onreadysetchange = handler; //onreadystatechange - fires event assigned to it whenever new invocation fx is called
+            invocation.send();
+        }
+    }
+
+    var invocation = new XMLHttpRequest();
+    var uri = "http://test.com/resources/public-date/";
+
+    function callOtherDomainWithCredentials(){
+        if(invocation){
+            invocation.open('GET', url, true);
+            invocation.withCredentials = true;
+            invocation.onreadystatechange = handler; //Added new line of code from previpous fx to handle credentials
+            invocation.send();
+        }
+    }
+
+// this function below checks if CORS is supported
+// XDomainRequest (line 42) ONLY exists in IE, and its unique way of making CORS request
+
+function checksCORSRequest(method, uri){
+    var xhr = new XMLHttpRequest();
+    if("withCredentials" in xhr)
+    {
+        xhr.open(method, url, true)
+    }
+    else if(typeof XMLHttpRequest != "undefined"){
+        xhr = newDomainRequest();
+        xhr.open(method, uri);
+    }
+    else {
+        xhr = "null"
+    }
+    
+}
+
+</script>
+<body>
+
+</body>
+</html>
