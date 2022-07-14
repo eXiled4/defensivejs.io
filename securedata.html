@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Securing Web Storage
+    </title>
+</head>
+<script type="text/javascript">
+
+
+// Traditional methods store data in cookie to be sent
+// Cookies sent with request, imited storage size, slow delivery speed
+// Storing data in session variables can be seen in URL - VERY INSECURE
+// Persistance storage - localStorage eg 
+// In example - setSettings funuction will store data in localStorage - see eg function
+
+function setSettings() {
+    if ('localStorage' in window && window['localStorage'] !== null)
+    {
+        var backcolor = document.getElementById('backcolor').value;
+        var fontsz = document.getElementById('fontsz').value;
+        localStorage.setItem('bgcolor', backcolor);
+        localStorage.fontweight = fontsz
+    }
+    else
+    {
+        alert('cannot store info as browser does not support localStorage')
+    }
+}
+
+// this function calls upon the data from localStorage
+function applySetting(){
+    document.body.style.backgroundColor = localStorage.getItem('backcolor');
+    document.body.style.fontSize = localStorage.fontweight + 'px';
+}
+
+sessionStorage.setItem("username", "jsmith")
+// session storage can be used to store any session variables with this syntax
+
+// Never ever accept data from sessionStorage or localStorage, treat it as untrusted data and it needs to be validated
+// For basic data eg preferences and username - ok to store, these storage methods not secure!
+
+</script>
+<body>
+
+</body>
+</html>
+
